@@ -5,28 +5,19 @@ import 'package:flutter/widgets.dart';
 void main() => runApp(XylophoneApp());
 
 class XylophoneApp extends StatelessWidget {
-  List<Color> colors = [
-    Colors.red,
-    Colors.orange,
-    Colors.yellow,
-    Colors.green,
-    Colors.teal,
-    Colors.blue,
-    Colors.purple,
-  ];
 
 
 
-  Widget createMusicButton(int buttonNum) {
+
+  Widget createMusicButton({Color color, int soundNum}) {
     return Expanded(
       child: TextButton(
         onPressed: () {
           final AudioCache player = AudioCache();
-          player.play('note${buttonNum+1}.wav');
+          player.play('note$soundNum.wav');
         },
         style: TextButton.styleFrom(
-          backgroundColor: colors[buttonNum],
-          shadowColor: Colors.grey,
+          backgroundColor: color,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(0.0),
           )
@@ -46,13 +37,14 @@ class XylophoneApp extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
 
-              createMusicButton(0),
-              createMusicButton(1),
-              createMusicButton(2),
-              createMusicButton(3),
-              createMusicButton(4),
-              createMusicButton(5),
-              createMusicButton(6),
+              createMusicButton(color: Colors.red, soundNum: 1),
+              createMusicButton(color: Colors.yellow, soundNum: 2),
+              createMusicButton(color: Colors.orange, soundNum: 3),
+              createMusicButton(color: Colors.green, soundNum: 4),
+              createMusicButton(color: Colors.teal, soundNum: 5),
+              createMusicButton(color: Colors.blue, soundNum: 6),
+              createMusicButton(color: Colors.purple, soundNum: 7),
+
               // TextButton(
               //   onPressed: () {
               //     final AudioCache player = AudioCache();
