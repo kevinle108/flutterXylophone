@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audio_cache.dart';
+import 'package:flutter/widgets.dart';
 
 void main() => runApp(XylophoneApp());
 
@@ -17,15 +18,19 @@ class XylophoneApp extends StatelessWidget {
 
 
   Widget createMusicButton(int buttonNum) {
-    return TextButton(
-      onPressed: () {
-        final AudioCache player = AudioCache();
-        player.play('note${buttonNum+1}.wav');
-      },
-      child: Container(
-        height: 50,
-        width: 100,
-        color: colors[buttonNum],
+    return Expanded(
+      child: TextButton(
+        onPressed: () {
+          final AudioCache player = AudioCache();
+          player.play('note${buttonNum+1}.wav');
+        },
+        style: TextButton.styleFrom(
+          backgroundColor: colors[buttonNum],
+          shadowColor: Colors.grey,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(0.0),
+          )
+        ),
       ),
     );
   }
@@ -38,6 +43,7 @@ class XylophoneApp extends StatelessWidget {
         backgroundColor: Colors.black,
         body: SafeArea(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
 
               createMusicButton(0),
